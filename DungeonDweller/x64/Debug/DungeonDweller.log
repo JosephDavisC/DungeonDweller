@@ -1,0 +1,6 @@
+﻿  DungeonDweller.cpp
+C:\Users\joech\source\repos\DungeonDweller\DungeonDweller\DungeonDweller.cpp(112,3): warning C4102: 'deafult': unreferenced label
+C:\Users\joech\source\repos\DungeonDweller\DungeonDweller\DungeonDweller.cpp(160,3): warning C4102: 'deafult': unreferenced label
+C:\Users\joech\source\repos\DungeonDweller\DungeonDweller\DungeonDweller.cpp(521,3): warning C4102: 'deafult': unreferenced label
+C:\Users\joech\source\repos\DungeonDweller\DungeonDweller\DungeonDweller.cpp(565,2): warning C4102: 'deafult': unreferenced label
+  DungeonDweller.vcxproj -> C:\Users\joech\source\repos\DungeonDweller\x64\Debug\DungeonDweller.exe
