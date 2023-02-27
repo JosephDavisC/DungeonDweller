@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <string>
 #include <map>
-#include <vector>
+#include <vector> 
 
 using namespace std;
 
@@ -21,9 +21,6 @@ string player_name;
 string input;
 map<string, int > player_inventory;
 map<string, int> player_weapons;
-
-//String removing the file extension
-string playerNameWithoutExt = player_name.substr(0, player_name.find_last_of("."));
 
 //Char
 char currentLocation = 'H'; // starting location of the dungeon
@@ -52,6 +49,11 @@ void quit();
 //The start of everything
 int main()
 {
+	cout << "DDDDD                                                    DDDDD                     lll lll\n";
+	cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
+	cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
+	cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
+	cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
 	cout << "-----------------------------\n";
 	cout << "Welcome to Dungeon Dweller!!! \n";
 	cout << "-----------------------------\n";
@@ -59,13 +61,10 @@ int main()
 	cout << "Before we begin, please enter your name \n";
 	cin >> player_name;
 
-	//This will create a text file witht the player's name 
-	//player_name += ".txt";
-
 	ofstream outfile;
 	outfile.open(player_name);
 
-	mainMenu();
+	startMenu();
 
 	return 0;
 }
@@ -78,6 +77,12 @@ void mainMenu()
 
 	while (!shouldQuit)
 	{
+		system("cls");
+		cout << "DDDDD                                                    DDDDD                     lll lll\n";
+		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
+		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
+		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
+		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
 		cout << "-----------------------------\n";
 		cout << "Welcome " << player_name << "!\n";
 		cout << "What would you like to do fist?\n";
@@ -126,8 +131,14 @@ void startMenu()
 
 	while (!shouldQuit)
 	{
+		system("cls");
+		cout << "DDDDD                                                    DDDDD                     lll lll\n";
+		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
+		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
+		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
+		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
 		cout << "-----------------------------\n";
-		cout << "Welcome " << player_name << "to Dungeon Dweller!\n";
+		cout << "Welcome " << player_name << " to Dungeon Dweller!\n";
 		cout << "What would you like to do fist?\n";
 		cout << "1) Start Game\n";
 		cout << "2) Instructions\n";
@@ -139,27 +150,23 @@ void startMenu()
 		switch (choice)
 		{
 		case 1:
-			exploreDungeon();
+			mainMenu();
 			break;
 
 		case 2:
-			showInventory();
+			showInstructions();
 			break;
 
 		case 3:
-			showPlayerInfo();
+			showAbout();
 			break;
 
 		case 4:
-			showMap();
-			break;
-
-		case 5:
 			shouldQuit = true;
 			quit();
 			break;
 
-		deafult:
+		default:
 			cout << "Invalid Choice\n";
 			break;
 		}
@@ -168,12 +175,86 @@ void startMenu()
 
 void showInstructions()
 {
+	int choice;
+	bool shouldQuit = false;
 
+	while (!shouldQuit)
+	{
+		system("cls");
+		cout << "DDDDD                                                    DDDDD                     lll lll\n";
+		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
+		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
+		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
+		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+		cout << "-----------------------------\n";
+		cout << "Instructions";
+		cout << "-Start the game by selecting the start game option from the start menu.\n";
+		cout << "-You will find yourself in the entrance of a dungeon.\n";
+		cout << "-Explore the dungeon by moving your character through the different rooms and corridors.\n";
+		cout << "-Be careful of traps, enemies, and obstacles that might hinder your progress.\n";
+		cout << "-You need to collect atleast 100 coins to win the game.\n";
+		cout << "-Keep exploring the dungeon until you have collected 100 coins or more.\n";
+		cout << "-After winning the game, you can choose to play again or return to the main menu.\n";
+		cout << "-----------------------------\n";
+		cout << "1) Back\n";
+		cout << "-----------------------------\n";
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			startMenu();
+			break;
+
+		default:
+			cout << "Invalid Choice\n";
+			break;
+		}
+	}
 }
 
-void showAbout() 
+void showAbout()
 {
+	int choice;
+	bool shouldQuit = false;
 
+	while (!shouldQuit)
+	{
+		system("cls");
+		cout << "DDDDD                                                    DDDDD                     lll lll\n";
+		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
+		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
+		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
+		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+		cout << "-----------------------------\n";
+		cout << "About\n";
+		cout << "Welcome to our game! In this adventure, you play as a character who starts off in a small village with\n";
+		cout << "nothing but the clothes on their back. Although the village appears to be peaceful, rumors are spreading" << endl;
+		cout << "of an evil monster who has been hiding in his dungeon. As the player, your task" << endl;
+		cout << "is to investigate the sorcerer's fortress and kill any monster you see in sight." << endl;
+
+		cout << "The first quest begins when the village chief asks you to investigate the dungeon." << endl;
+		cout << "To help you on your journey, the chief provides you with a basic sword and shield. Your objective." << endl;
+		cout << "is to navigate through a series of traps and puzzles to reach the dungeon." << endl;
+
+		cout << "Once you have arrived at the sorcerer's inner sanctum, you must defeat the sorcerer and free any remaining villagers." << endl;
+		cout << "This is the main quest of the game, and it will test your skills as a player. Are you ready to embark on this adventure?" << endl;
+		cout << "-----------------------------\n";
+		cout << "1) Back\n";
+		cout << "-----------------------------\n";
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			startMenu();
+			break;
+
+		default:
+			cout << "Invalid Choice\n";
+			break;
+		}
+	}
 }
 
 void exploreDungeon()
@@ -184,6 +265,7 @@ void exploreDungeon()
 	bool shouldQuit = false;
 	while (!shouldQuit)
 	{
+		cout << "Your character is H\n";
 		cout << "-----------------------------\n";
 		cout << "     +----+     +----+" << endl;
 		cout << "     | A  |-----| B  |" << endl;
@@ -318,7 +400,7 @@ void fightMonsterC()
 	{
 		cout << "-----------------------------\n";
 		cout << "     +----+     +----+" << endl;
-		cout << "     | H  |-----| B  |" << endl;
+		cout << "     | A  |-----| B  |" << endl;
 		cout << "     +----+     +----+" << endl;
 		cout << "               |         " << endl;
 		cout << "          +----+----+  " << endl;
@@ -326,7 +408,7 @@ void fightMonsterC()
 		cout << "          +----+----+  " << endl;
 		cout << "               |       " << endl;
 		cout << "     +----+     +----+" << endl;
-		cout << "     | C  |-----| D  |" << endl;
+		cout << "     | H  |-----| D  |" << endl;
 		cout << "     +----+     +----+" << endl;
 		cout << "-----------------------------\n";
 		cout << "You are now fighting a monster!" << endl;
@@ -406,7 +488,8 @@ void showInventory()
 		cout << "1) Explore Dungeon\n";
 		cout << "2) Show Inventory\n";
 		cout << "3) Show Player Info\n";
-		cout << "4) Quit\n";
+		cout << "4) Main Menu\n";
+		cout << "5) Quit\n";
 		cout << "-----------------------------\n";
 		cin >> choice;
 
@@ -425,6 +508,10 @@ void showInventory()
 			break;
 
 		case 4:
+			mainMenu();
+			break;
+
+		case 5:
 			shouldQuit = true;
 			quit();
 			break;
@@ -454,7 +541,8 @@ void showPlayerInfo()
 		cout << "1) Explore Dungeon\n";
 		cout << "2) Show Inventory\n";
 		cout << "3) Show Player Info\n";
-		cout << "4) Quit\n";
+		cout << "4) Main Menu\n";
+		cout << "5) Quit\n";
 		cout << "-----------------------------\n";
 		cin >> choice;
 
@@ -473,6 +561,10 @@ void showPlayerInfo()
 			break;
 
 		case 4:
+			mainMenu();
+			break;
+
+		case 5:
 			shouldQuit = true;
 			quit();
 			break;
@@ -510,7 +602,8 @@ void showMap()
 		cout << "1) Explore Dungeon\n";
 		cout << "2) Show Inventory\n";
 		cout << "3) Show Player Info\n";
-		cout << "4) Quit\n";
+		cout << "4) Main Menu\n";
+		cout << "5) Quit\n";
 		cout << "-----------------------------\n";
 		cin >> choice;
 
@@ -529,6 +622,10 @@ void showMap()
 			break;
 
 		case 4:
+			mainMenu();
+			break;
+
+		case 5:
 			shouldQuit = true;
 			quit();
 			break;
@@ -579,7 +676,7 @@ void roomB()
 			exploreDungeon();
 			break;
 
-		deafult:
+		default:
 			cout << "Invalid Choice\n";
 			break;
 
@@ -621,7 +718,7 @@ void roomD()
 		exploreDungeon();
 		break;
 
-	deafult:
+	default:
 		cout << "Invalid Choice\n";
 		break;
 
