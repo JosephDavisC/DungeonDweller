@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 #include <fstream>
 #include <cstdlib>
 #include <string>
@@ -6,6 +7,10 @@
 #include <vector> 
 
 using namespace std;
+
+//For Colors
+HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+void setColor(int);
 
 //Player Int
 int player_health = 100;
@@ -17,24 +22,28 @@ int player_new_health;
 int new_gold;	
 
 //Strings
-string player_name;
 string input;
 map<string, int > player_inventory;
 map<string, int> player_weapons;
 
 //Char
+char player_name[255];
 char currentLocation = 'H'; // starting location of the dungeon
 char direction;
 char restart;
 
-//Voids (Functions)
+//General Functions
 void mainMenu();
 void startMenu();
 void exploreDungeon();
 void showInstructions();
 void showAbout();
+
+//Fight Functions
 void fightMonsterA();
 void fightMonsterC();
+
+//Player Functions
 void showInventory();
 void showPlayerInfo();
 void showMap();
@@ -46,20 +55,26 @@ void roomD();
 //Quit Function
 void quit();
 
+//Win & Lose Function
+void showWin();
+void showLose();
+
 //The start of everything
 int main()
 {
+	setColor(2);
 	cout << "DDDDD                                                    DDDDD                     lll lll\n";
 	cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
 	cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
 	cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
 	cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+	setColor(7);
 	cout << "-----------------------------\n";
 	cout << "Welcome to Dungeon Dweller!!! \n";
 	cout << "-----------------------------\n";
 
 	cout << "Before we begin, please enter your name \n";
-	cin >> player_name;
+	cin.get(player_name,255);
 
 	ofstream outfile;
 	outfile.open(player_name);
@@ -69,6 +84,9 @@ int main()
 	return 0;
 }
 
+void setColor(int color) {
+	SetConsoleTextAttribute(out, color);
+}
 
 void mainMenu() 
 {
@@ -78,11 +96,13 @@ void mainMenu()
 	while (!shouldQuit)
 	{
 		system("cls");
+		setColor(2);
 		cout << "DDDDD                                                    DDDDD                     lll lll\n";
 		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
 		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
 		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
 		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+		setColor(7);
 		cout << "-----------------------------\n";
 		cout << "Welcome " << player_name << "!\n";
 		cout << "What would you like to do fist?\n";
@@ -117,7 +137,7 @@ void mainMenu()
 			quit();
 			break;
 
-		deafult:
+		default:
 			cout << "Invalid Choice\n";
 			break;
 		}
@@ -132,11 +152,13 @@ void startMenu()
 	while (!shouldQuit)
 	{
 		system("cls");
+		setColor(2);
 		cout << "DDDDD                                                    DDDDD                     lll lll\n";
 		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
 		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
 		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
 		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+		setColor(7);
 		cout << "-----------------------------\n";
 		cout << "Welcome " << player_name << " to Dungeon Dweller!\n";
 		cout << "What would you like to do fist?\n";
@@ -181,11 +203,13 @@ void showInstructions()
 	while (!shouldQuit)
 	{
 		system("cls");
+		setColor(2);
 		cout << "DDDDD                                                    DDDDD                     lll lll\n";
 		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
 		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
 		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
 		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+		setColor(7);
 		cout << "-----------------------------\n";
 		cout << "Instructions";
 		cout << "-Start the game by selecting the start game option from the start menu.\n";
@@ -193,7 +217,7 @@ void showInstructions()
 		cout << "-Explore the dungeon by moving your character through the different rooms and corridors.\n";
 		cout << "-Be careful of traps, enemies, and obstacles that might hinder your progress.\n";
 		cout << "-You need to collect atleast 100 coins to win the game.\n";
-		cout << "-Keep exploring the dungeon until you have collected 100 coins or more.\n";
+		cout << "-Keep exploring the dungeon until you have collected 100 coins.\n";
 		cout << "-After winning the game, you can choose to play again or return to the main menu.\n";
 		cout << "-----------------------------\n";
 		cout << "1) Back\n";
@@ -221,13 +245,16 @@ void showAbout()
 	while (!shouldQuit)
 	{
 		system("cls");
+		setColor(2);
 		cout << "DDDDD                                                    DDDDD                     lll lll\n";
 		cout << "DD  DD  uu   uu nn nnn   gggggg   eee   oooo  nn nnn     DD  DD  ww      ww   eee  lll lll   eee  rr rr\n";
 		cout << "DD   DD uu   uu nnn  nn gg   gg ee   e oo  oo nnn  nn    DD   DD ww      ww ee   e lll lll ee   e rrr  r\n";
 		cout << "DD   DD uu   uu nn   nn ggggggg eeeee  oo  oo nn   nn    DD   DD  ww ww ww  eeeee  lll lll eeeee  rr\n";
 		cout << "DDDDDD   uuuu u nn   nn      gg  eeeee  oooo  nn   nn    DDDDDD    ww  ww    eeeee lll lll  eeeee rr\n";
+		setColor(7);
 		cout << "-----------------------------\n";
 		cout << "About\n";
+		cout << "-----------------------------\n";
 		cout << "Welcome to our game! In this adventure, you play as a character who starts off in a small village with\n";
 		cout << "nothing but the clothes on their back. Although the village appears to be peaceful, rumors are spreading" << endl;
 		cout << "of an evil monster who has been hiding in his dungeon. As the player, your task" << endl;
@@ -299,7 +326,7 @@ void exploreDungeon()
 			mainMenu();
 			break;
 
-		deafult:
+		default:
 			cout << "Invalid Choice\n";
 			break;
 
@@ -343,7 +370,7 @@ void fightMonsterA()
 		cout << "You deal fatal damage to the monster." << endl;
 
 		// Random monster attack damages player's health
-		int monster_damage = rand() % 10 + 1;
+		int monster_damage = rand() % 20 + 1;
 		player_health -= monster_damage;
 		cout << "The monster attacks and deals " << monster_damage << " damage to you." << endl;
 		cout << "Your current health is: " << player_health << endl;
@@ -369,9 +396,15 @@ void fightMonsterA()
 
 		// Check if player is still alive
 		if (player_health <= 0) {
-			cout << "You died!" << endl;
-			quit();
+			showLose();
+			return;
 		}
+
+		if (player_gold >= 100) {
+			showWin();
+			return;
+		}
+
 		cout << "-----------------------------\n";
 		cout << "1) Go back\n";
 		cout << "-----------------------------\n";
@@ -425,7 +458,7 @@ void fightMonsterC()
 		cout << "You deal fatal damage to the monster." << endl;
 
 		// Random monster attack damages player's health
-		int monster_damage = rand() % 10 + 1;
+		int monster_damage = rand() % 25 + 1;
 		player_health -= monster_damage;
 		cout << "The monster attacks and deals " << monster_damage << " damage to you." << endl;
 		cout << "Your current health is: " << player_health << endl;
@@ -451,8 +484,13 @@ void fightMonsterC()
 
 		// Check if player is still alive
 		if (player_health <= 0) {
-			cout << "You died!" << endl;
-			quit();
+			showLose();
+			return;
+		}
+
+		if (player_gold >= 100) {
+			showWin();
+			return;
 		}
 		cout << "-----------------------------\n";
 		cout << "1) Go back\n";
@@ -725,9 +763,63 @@ void roomD()
 	}
 }
 
-
 void quit()
 {
 	cout << "Exiting game..." << endl; 
 	exit(0); //will quit the game :)
+}
+
+void showWin()
+{	
+	system("cls");
+	int choice;
+	bool shouldQuit = false;
+
+	while (!shouldQuit)
+	{
+		setColor(1);
+		cout << "@@@ @@@  @@@@@@  @@@  @@@    @@@  @@@  @@@ @@@ @@@  @@@ @@@ @@@ @@@" << endl;
+		cout << "@@! !@@ @@!  @@@ @@!  @@@    @@!  @@!  @@! @@! @@!@!@@@ @@@ @@@ @@@ " << endl;
+		cout << " !@!@!  @!@  !@! @!@  !@!    @!!  !!@  @!@ !!@ @!@@!!@! !@! !@! !@! " << endl;
+		cout << "  !!:   !!:  !!! !!:  !!!     !:  !!:  !!  !!: !!:  !!!             " << endl;
+		cout << "  !!     : :. :   :.:: :       ::.:  :::   :   ::    :  :.: :.: :.: " << endl;
+		setColor(7);
+		cout << "-----------------------------\n";
+		cout << "1) Return to menu\n";
+		cout << "2) Quit Game\n";
+		cout << "-----------------------------\n";
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			startMenu();
+			break;
+
+		case 2:
+			shouldQuit = true;
+			quit();
+			break;
+
+		default:
+			cout << "Invalid Choice\n";
+			break;
+
+		}
+
+	}
+}
+
+void showLose()
+{
+	system("cls");
+	setColor(4);
+	cout << "@@@ @@@  @@@@@@  @@@  @@@    @@@       @@@@@@   @@@@@@ @@@@@@@ @@@ @@@ @@@ \n";
+	cout << "@@! !@@ @@!  @@@ @@!  @@@    @@!      @@!  @@@ !@@       @!!   @@@ @@@ @@@ \n";
+	cout << " !@!@!  @!@  !@! @!@  !@!    @!!      @!@  !@!  !@@!!    @!!   !@! !@! !@! \n";
+	cout << "  !!:   !!:  !!! !!:  !!!    !!:      !!:  !!!     !:!   !!:               \n";
+	cout << "  .:     : :. :   :.:: :     : ::.: :  : :. :  ::.: :     :    :.: :.: :.: \n";
+	setColor(1);
+
+	quit(); //To quit the game
 }
