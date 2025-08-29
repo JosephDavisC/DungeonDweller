@@ -45,5 +45,7 @@ The project was my first larger C++ program, and it focuses on building fundamen
 ## License  
 This project is shared for educational purposes.  
 
+---
+
 ✍️ Created by **Joseph Davis Chamdani**  
 
